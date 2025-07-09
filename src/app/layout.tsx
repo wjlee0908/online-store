@@ -9,7 +9,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Minimal",
+  title: "Minimalism",
   description: "Minimal is a minimalistic online store",
 };
 
