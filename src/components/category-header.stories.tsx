@@ -1,9 +1,14 @@
+import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { CategoryHeader } from "./category-header";
 
-export default {
+const meta = {
   component: CategoryHeader,
-};
+} satisfies Meta<typeof CategoryHeader>;
 
-export const CategoryHeaderStory = () => {
-  return <CategoryHeader />;
+export default meta;
+
+export const CategoryHeaderStory: StoryObj<typeof meta> = {
+  args: {
+    title: "생활",
+  },
 };
