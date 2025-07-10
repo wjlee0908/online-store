@@ -8,7 +8,7 @@ export interface CategoryHeaderProps {
 
 export function CategoryHeader({ title }: CategoryHeaderProps) {
   return (
-    <header className="flex items-center justify-between w-full h-14 bg-white border-gray-200 border-b-[1px] z-30">
+    <header className="flex items-center justify-between w-full h-14 bg-white border-gray-200 border-b-[1px] z-header">
       <button
         onClick={() => router.back()}
         className="px-4 py-4 cursor-pointer"
