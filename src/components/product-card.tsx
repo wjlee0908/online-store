@@ -1,14 +1,21 @@
+import clsx from "clsx";
 import Image from "next/image";
 
 export interface ProductCardProps {
   imageSrc: string;
   name: string;
   price: number;
+  className?: string;
 }
 
-export function ProductCard({ imageSrc, name, price }: ProductCardProps) {
+export function ProductCard({
+  imageSrc,
+  name,
+  price,
+  className,
+}: ProductCardProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className={clsx("flex flex-col gap-2", className)}>
       <div className="relative w-full aspect-square">
         <Image
           className="object-cover"

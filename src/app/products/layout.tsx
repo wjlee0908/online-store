@@ -7,7 +7,7 @@ export default function ProductsLayout({
 }) {
   return (
     <div>
-      <CategoryHeader />
+      <CategoryHeader title="의복" />
       {children}
     </div>
   );
