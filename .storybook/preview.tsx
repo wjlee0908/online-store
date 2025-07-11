@@ -20,14 +20,6 @@ const preview: Preview = {
       test: "todo",
     },
 
-    decorators: [
-      (Story) => (
-        <div className={clsx(pretendard.className, "antialiased")}>
-          <Story />
-        </div>
-      ),
-    ],
-
     staticDirs: [
       {
         from: "../src/styles/fonts",
@@ -35,6 +27,17 @@ const preview: Preview = {
       },
     ],
   },
+
+  decorators: [
+    (Story) => (
+      <div
+        className={clsx(pretendard.className, "antialiased")}
+        style={pretendard.style}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
