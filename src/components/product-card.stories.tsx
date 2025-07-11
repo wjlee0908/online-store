@@ -7,4 +7,10 @@ const meta = {
 
 export default meta;
 
-export const ProductCardStory: StoryObj<typeof meta> = {};
+export const ProductCardStory: StoryObj<typeof meta> = {
+  args: {
+    imageSrc: "https://dummyimage.com/200x200.png",
+    name: "알루미늄 하드 캐리어 60L",
+    price: 990_000,
+  },
+};

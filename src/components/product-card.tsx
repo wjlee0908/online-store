@@ -1,18 +1,26 @@
 import Image from "next/image";
 
-export function ProductCard() {
+export interface ProductCardProps {
+  imageSrc: string;
+  name: string;
+  price: number;
+}
+
+export function ProductCard({ imageSrc, name, price }: ProductCardProps) {
   return (
     <div className="flex flex-col gap-2">
-      <Image
-        className="aspect-square object-cover"
-        src="https://dummyimage.com/200x200.png"
-        alt="product-card-image"
-        width={200}
-        height={200}
-      />
-      <div>
-        <h3 className="text-sm font-normal mb-5">알루미늄 하드 캐리어 60L</h3>
-        <p className="text-sm font-semibold">990,000원</p>
+      <div className="relative w-full aspect-square">
+        <Image
+          className="object-cover"
+          src={imageSrc}
+          alt={name}
+          fill
+          sizes="(max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      <div className="flex flex-col gap-1">
+        <h3 className="text-sm font-normal mb-5">{name}</h3>
+        <p className="text-sm font-semibold">{price.toLocaleString()}원</p>
       </div>
     </div>
   );
