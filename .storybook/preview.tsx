@@ -1,5 +1,8 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import "../src/app/globals.css";
+import React from "react";
+import clsx from "clsx";
+import { pretendard } from "../src/styles/fonts";
 
 const preview: Preview = {
   parameters: {
@@ -16,6 +19,21 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: "todo",
     },
+
+    decorators: [
+      (Story) => (
+        <div className={clsx(pretendard.className, "antialiased")}>
+          <Story />
+        </div>
+      ),
+    ],
+
+    staticDirs: [
+      {
+        from: "../src/styles/fonts",
+        to: "src/styles/fonts",
+      },
+    ],
   },
 };
 
