@@ -1,7 +1,16 @@
 import { ProductCard } from "@/components/product-card";
 import { SubcategoryTab } from "@/components/subcategory-tab";
+import { QueryClient } from "@tanstack/react-query";
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["products"],
+    initialPageParam: 1,
+    queryFn: getProducts,
+  });
+
   return (
     <main>
       <SubcategoryTab
