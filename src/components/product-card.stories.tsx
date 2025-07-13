@@ -12,5 +12,6 @@ export const ProductCardStory: StoryObj<typeof meta> = {
     imageSrc: "https://dummyimage.com/200x200.png",
     name: "알루미늄 하드 캐리어 60L",
     price: 990_000,
+    productId: 1,
   },
 };

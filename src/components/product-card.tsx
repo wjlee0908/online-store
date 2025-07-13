@@ -1,10 +1,12 @@
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface ProductCardProps {
   imageSrc: string;
   name: string;
   price: number;
+  productId: number;
   className?: string;
 }
 
@@ -12,10 +14,14 @@ export function ProductCard({
   imageSrc,
   name,
   price,
+  productId,
   className,
 }: ProductCardProps) {
   return (
-    <div className={clsx("flex flex-col gap-2", className)}>
+    <Link
+      href={`/products/${productId}`}
+      className={clsx("flex flex-col gap-2", className)}
+    >
       <div className="relative w-full aspect-square">
         <Image
           className="object-cover"
@@ -29,6 +35,6 @@ export function ProductCard({
         <h3 className="text-sm font-normal mb-5">{name}</h3>
         <p className="text-sm font-semibold">{price.toLocaleString()}원</p>
       </div>
-    </div>
+    </Link>
   );
 }
