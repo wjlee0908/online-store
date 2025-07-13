@@ -1,3 +1,4 @@
+import { BottomNavigation } from "@/components/bottom-navigation";
 import { CategoryHeader } from "@/components/category-header";
 
 export default function ProductsLayout({
@@ -9,6 +10,7 @@ export default function ProductsLayout({
     <div>
       <CategoryHeader title="의복" />
       {children}
+      <BottomNavigation />
     </div>
   );
 }
