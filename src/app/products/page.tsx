@@ -1,14 +1,15 @@
 import { ProductCard } from "@/components/product-card";
 import { SubcategoryTab } from "@/components/subcategory-tab";
+import { products } from "@/queries/products";
 import { QueryClient } from "@tanstack/react-query";
 
 export default async function ProductsPage() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["products"],
+    queryKey: products.list.queryKey,
+    queryFn: products.list.queryFn,
     initialPageParam: 1,
-    queryFn: getProducts,
   });
 
   return (

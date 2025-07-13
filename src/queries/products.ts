@@ -5,6 +5,10 @@ export const products = createQueryKeys("products", {
   all: null,
   list: {
     queryKey: null,
-    queryFn: getProducts,
+    queryFn: (context) =>
+      getProducts({
+        limit: 20,
+        skip: (context.pageParam as number) * 20,
+      }),
   },
 });
