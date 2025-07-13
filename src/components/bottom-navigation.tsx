@@ -1,9 +1,13 @@
+"use client";
+
 import { HashtagIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import HomeIcon from "@heroicons/react/24/outline/HomeIcon";
 import MagnifyingGlassIcon from "@heroicons/react/24/outline/MagnifyingGlassIcon";
 import UserIcon from "@heroicons/react/24/outline/UserIcon";
+import clsx from "clsx";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export function BottomNavigation() {
   const navItems = [
@@ -34,10 +38,38 @@ export function BottomNavigation() {
     },
   ];
 
+  const lastScrollY = useRef(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+
+      // 스크롤 방향에 따라 표시/숨김
+      if (isScrollingDown) {
+        setIsVisible(false); // 아래로 스크롤 시 숨김
+      } else if (!isScrollingDown) {
+        setIsVisible(true); // 위로 스크롤 시 보임
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY.current]);
+
   return (
     <nav
       aria-label="하단 네비게이션"
-      className="h-12 sticky bottom-0 left-0 right-0 bg-white shadow-[0px_0px_16px_0px_rgba(0,0,0,0.12)]"
+      className={clsx(
+        "h-12 fixed bottom-0 left-0 right-0 bg-white shadow-[0px_0px_16px_0px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-linear",
+        !isVisible && "translate-y-[100%]"
+      )}
     >
       <ul className="w-full flex justify-around items-center">
         {navItems.map((item, index) => (
