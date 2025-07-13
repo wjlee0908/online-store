@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { pretendard } from "@/styles/fonts";
+import Providers from "@/app/providers";
 
 export const metadata: Metadata = {
   title: "Minimalism",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pretendard.className} antialiased`}>{children}</body>
+      <body className={`${pretendard.className} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
