@@ -6,7 +6,7 @@ const ReviewSchema = z.object({
   comment: z.string(),
   date: z.iso.datetime(),
   reviewerName: z.string(),
-  reviewerEmail: z.string().email(),
+  reviewerEmail: z.email(),
 });
 
 // 차원 정보 스키마
@@ -35,7 +35,7 @@ const ProductSchema = z.object({
   rating: z.number(),
   stock: z.number(),
   tags: z.array(z.string()),
-  brand: z.string(),
+  brand: z.string().optional(),
   sku: z.string(),
   weight: z.number(),
   dimensions: DimensionsSchema,
@@ -51,13 +51,15 @@ const ProductSchema = z.object({
 });
 
 // 상품 목록 응답 스키마
-export const GetProductResponseSchema = z.object({
+export const GetProductListResponseSchema = z.object({
   products: z.array(ProductSchema),
   total: z.number(),
   skip: z.number(),
   limit: z.number(),
 });
 
-export type GetProductResponse = z.infer<typeof GetProductResponseSchema>;
+export type GetProductListResponse = z.infer<
+  typeof GetProductListResponseSchema
+>;
 export type Product = z.infer<typeof ProductSchema>;
 export type Review = z.infer<typeof ReviewSchema>;

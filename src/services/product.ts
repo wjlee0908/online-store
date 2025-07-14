@@ -1,20 +1,24 @@
 import { api } from "@/lib/api";
-import { GetProductResponseSchema } from "@/schemas/product";
+import {
+  GetProductListResponse,
+  GetProductListResponseSchema,
+} from "@/schemas/product";
 
-export const getProducts = async ({
+export const getProductList = async ({
   limit = 20,
   skip = 0,
 }: {
   limit?: number;
   skip?: number;
-}) => {
+}): Promise<GetProductListResponse> => {
+  console.log("getProductList", limit, skip);
   const response = await api
-    .get(`/products`, {
+    .get("products", {
       searchParams: {
         limit,
         skip,
       },
     })
     .json();
-  return GetProductResponseSchema.parse(response);
+  return GetProductListResponseSchema.parse(response);
 };
