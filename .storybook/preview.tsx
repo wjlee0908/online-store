@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
-import "../src/app/globals.css";
+import "../app/globals.css";
 import React from "react";
 import clsx from "clsx";
 import { pretendard } from "../src/styles/fonts";

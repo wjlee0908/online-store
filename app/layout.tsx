@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { pretendard } from "@/styles/fonts";
-import Providers from "@/app/providers";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Minimalism",

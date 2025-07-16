@@ -3,11 +3,11 @@
 import { ProductCard } from "@/components/product-card";
 import { PRODUCT_LIST_LIMIT } from "@/lib/constants/product";
 import { productKey } from "@/queries/products";
-import { getProductList } from "@/services/product";
+import { getProductList } from "@/entities/product/api";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 
-export default function ProductsContainer() {
+export default function ProductCards() {
   const observerRef = useRef<HTMLDivElement>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
