@@ -1,3 +1,3 @@
-import ProductListPage from "./ui/product-list-page";
+export { ProductListPage } from "./ui/product-list-page";
 
-export { ProductListPage };
+export { ProductListLayout } from "./ui/product-list-layout";

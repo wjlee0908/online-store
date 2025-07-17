@@ -1,15 +1,15 @@
-import { SubcategoryTab } from "@/components/subcategory-tab";
-import { PRODUCT_LIST_LIMIT } from "@/lib/constants/product";
-import { productKey } from "@/queries/products";
-import { getProductList } from "@/services/product";
+import { SubcategoryTab } from "./subcategory-tab";
+import { PRODUCT_LIST_LIMIT } from "@pages/product-list/config";
+import { productKey } from "@entities/product/config";
+import { getProductList } from "@entities/product/api";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import ProductsContainer from "./products-container";
+import ProductCards from "./products-cards";
 
-export default async function ProductsPage() {
+export const ProductListPage = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
@@ -29,8 +29,8 @@ export default async function ProductsPage() {
         subcategories={["남성", "여성", "아동", "패션잡화"]}
       />
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductsContainer />
+        <ProductCards />
       </HydrationBoundary>
     </main>
   );
-}
+};

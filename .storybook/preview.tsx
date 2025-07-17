@@ -1,8 +1,8 @@
 import type { Preview } from "@storybook/nextjs-vite";
-import "../app/globals.css";
+import "@app/styles/globals.css";
 import React from "react";
 import clsx from "clsx";
-import { pretendard } from "../src/styles/fonts";
+import { pretendard } from "../src/app/styles";
 
 const preview: Preview = {
   parameters: {

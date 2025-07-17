@@ -1,16 +1,1 @@
-import { BottomNavigation } from "@/components/bottom-navigation";
-import { CategoryHeader } from "@/components/category-header";
-
-export default function ProductsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <CategoryHeader title="의복" />
-      {children}
-      <BottomNavigation />
-    </div>
-  );
-}
+export { ProductListLayout as default } from "@pages/product-list";
