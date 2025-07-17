@@ -1,4 +1,4 @@
-import { getProductList } from "./api";
+import { getProductList } from "./api/get-product-list";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
 export const productKey = createQueryKeys("products", {

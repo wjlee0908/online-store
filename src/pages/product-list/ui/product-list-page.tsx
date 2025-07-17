@@ -1,7 +1,6 @@
 import { SubcategoryTab } from "./subcategory-tab";
-import { PRODUCT_LIST_LIMIT } from "@pages/product-list/config";
-import { productKey } from "@entities/product/config";
-import { getProductList } from "@entities/product/api";
+import { PRODUCT_LIST_LIMIT } from "../config";
+import { productKey, getProductList } from "@entities/product";
 import {
   dehydrate,
   HydrationBoundary,

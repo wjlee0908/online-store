@@ -1,4 +1,4 @@
-import { api } from "@/shared/api/ky";
+import { api } from "@shared/api";
 import { GetProductListResponse, GetProductListResponseSchema } from "../model";
 
 export const getProductList = async ({

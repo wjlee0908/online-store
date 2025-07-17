@@ -1,9 +1,8 @@
 "use client";
 
-import { ProductCard } from "@/pages/product-list/ui/product-card";
-import { PRODUCT_LIST_LIMIT } from "@/pages/product-list/config";
-import { productKey } from "@/entities/product/config";
-import { getProductList } from "@/entities/product/api/get-product-list";
+import { ProductCard } from "./product-card";
+import { PRODUCT_LIST_LIMIT } from "../config";
+import { productKey, getProductList } from "@entities/product";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 
