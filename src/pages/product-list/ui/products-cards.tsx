@@ -69,7 +69,11 @@ export default function ProductCards() {
       <div
         ref={observerRef}
         className="col-span-2 h-4 flex items-center justify-center"
-      />
+      >
+        {isFetchingNextPage && (
+          <span className="loading loading-spinner loading-md"></span>
+        )}
+      </div>
     </div>
   );
 }
