@@ -1,20 +1,4 @@
-import { z } from "zod";
-
-// 리뷰 스키마
-const ReviewSchema = z.object({
-  rating: z.number().min(1).max(5),
-  comment: z.string(),
-  date: z.iso.datetime(),
-  reviewerName: z.string(),
-  reviewerEmail: z.email(),
-});
-
-// 차원 정보 스키마
-const DimensionsSchema = z.object({
-  width: z.number(),
-  height: z.number(),
-  depth: z.number(),
-});
+import z from "zod";
 
 // 메타 정보 스키마
 const MetaSchema = z.object({
@@ -24,8 +8,24 @@ const MetaSchema = z.object({
   qrCode: z.string(),
 });
 
+/** 크기 정보 스키마 */
+const DimensionsSchema = z.object({
+  width: z.number(),
+  height: z.number(),
+  depth: z.number(),
+});
+
+// 리뷰 스키마
+export const ReviewSchema = z.object({
+  rating: z.number().min(1).max(5),
+  comment: z.string(),
+  date: z.iso.datetime(),
+  reviewerName: z.string(),
+  reviewerEmail: z.email(),
+});
+
 // 상품 스키마
-const ProductSchema = z.object({
+export const ProductSchema = z.object({
   id: z.number(),
   title: z.string(),
   description: z.string(),
@@ -50,16 +50,5 @@ const ProductSchema = z.object({
   images: z.array(z.string()),
 });
 
-// 상품 목록 응답 스키마
-export const GetProductListResponseSchema = z.object({
-  products: z.array(ProductSchema),
-  total: z.number(),
-  skip: z.number(),
-  limit: z.number(),
-});
-
-export type GetProductListResponse = z.infer<
-  typeof GetProductListResponseSchema
->;
 export type Product = z.infer<typeof ProductSchema>;
 export type Review = z.infer<typeof ReviewSchema>;

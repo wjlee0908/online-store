@@ -1,5 +1,8 @@
 import { api } from "@shared/api";
-import { GetProductListResponse, GetProductListResponseSchema } from "../model";
+import {
+  GetProductListResponse,
+  GetProductListResponseSchema,
+} from "../model/get-product-list-response-schema";
 
 export const getProductList = async ({
   limit = 20,

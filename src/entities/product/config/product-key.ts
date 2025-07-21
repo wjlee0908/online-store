@@ -1,6 +1,6 @@
-import { getProductList } from "./api/get-product-list";
+import { getProductList } from "../api/get-product-list";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { getProductListByCategory } from "./api/get-product-list-by-category";
+import { getProductListByCategory } from "../api/get-product-list-by-category";
 
 const DEFAULT_LIMIT = 20;
 
