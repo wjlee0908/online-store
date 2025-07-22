@@ -1,5 +1,5 @@
 import { SubcategoryTab } from "./subcategory-tab";
-import { PRODUCT_LIST_LIMIT } from "../config";
+import { DEFAULT_CATEGORY_SLUG, PRODUCT_LIST_LIMIT } from "../config";
 import { productKey, getProductListByCategory } from "@entities/product";
 import {
   dehydrate,
@@ -7,11 +7,17 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import ProductCards from "./products-cards";
+import { PageProps } from "@shared/framework";
 
-export const ProductListPage = async () => {
+export const ProductListPage = async (props: PageProps) => {
+  const searchParams = await props.searchParams;
+
+  const categorySlug =
+    typeof searchParams.categorySlug === "string"
+      ? searchParams.categorySlug
+      : DEFAULT_CATEGORY_SLUG;
+
   const queryClient = new QueryClient();
-
-  const categorySlug = "beauty";
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: productKey
@@ -33,7 +39,7 @@ export const ProductListPage = async () => {
         subcategories={["남성", "여성", "아동", "패션잡화"]}
       />
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductCards categoryId={categorySlug} />
+        <ProductCards categorySlug={categorySlug} />
       </HydrationBoundary>
     </main>
   );

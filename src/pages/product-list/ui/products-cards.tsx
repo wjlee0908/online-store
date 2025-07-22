@@ -7,19 +7,19 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 
 export interface ProductCardsProps {
-  categoryId: string;
+  categorySlug: string;
 }
 
-export default function ProductCards({ categoryId }: ProductCardsProps) {
+export default function ProductCards({ categorySlug }: ProductCardsProps) {
   const observerRef = useRef<HTMLDivElement>(null);
 
   const productListQuery = useInfiniteQuery({
     queryKey: productKey
       .infinite({ limit: PRODUCT_LIST_LIMIT })
-      ._ctx.category(categoryId).queryKey,
+      ._ctx.category(categorySlug).queryKey,
     queryFn: ({ pageParam = 0 }) =>
       getProductListByCategory({
-        categorySlug: categoryId,
+        categorySlug: categorySlug,
         limit: PRODUCT_LIST_LIMIT,
         skip: pageParam * PRODUCT_LIST_LIMIT,
       }),
