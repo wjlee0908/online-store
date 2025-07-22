@@ -5,3 +5,5 @@ export const ProductCategorySchema = z.object({
   name: z.string(),
   url: z.string(),
 });
+
+export type ProductCategoryDTO = z.infer<typeof ProductCategorySchema>;

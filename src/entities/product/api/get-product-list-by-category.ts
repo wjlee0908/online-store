@@ -2,7 +2,7 @@ import { api } from "@shared/api";
 import {
   GetProductListResponse,
   GetProductListResponseSchema,
-} from "../model/get-product-list-response-schema";
+} from "./get-product-list-response";
 
 export const getProductListByCategory = async ({
   categorySlug,

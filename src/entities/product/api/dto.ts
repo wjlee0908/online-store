@@ -50,5 +50,5 @@ export const ProductSchema = z.object({
   images: z.array(z.string()),
 });
 
-export type Product = z.infer<typeof ProductSchema>;
-export type Review = z.infer<typeof ReviewSchema>;
+export type ProductDTO = z.infer<typeof ProductSchema>;
+export type ReviewDTO = z.infer<typeof ReviewSchema>;

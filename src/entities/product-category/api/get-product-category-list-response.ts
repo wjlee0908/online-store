@@ -1,5 +1,5 @@
 import z from "zod";
-import { ProductCategorySchema } from "./product-category-schema";
+import { ProductCategorySchema } from "./dto";
 
 export const GetProductCategoryListResponseSchema = z.array(
   ProductCategorySchema
