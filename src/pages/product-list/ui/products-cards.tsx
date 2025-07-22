@@ -19,7 +19,7 @@ export default function ProductCards({ categoryId }: ProductCardsProps) {
       ._ctx.category(categoryId).queryKey,
     queryFn: ({ pageParam = 0 }) =>
       getProductListByCategory({
-        categoryId,
+        categorySlug: categoryId,
         limit: PRODUCT_LIST_LIMIT,
         skip: pageParam * PRODUCT_LIST_LIMIT,
       }),

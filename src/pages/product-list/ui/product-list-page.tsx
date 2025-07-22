@@ -11,15 +11,15 @@ import ProductCards from "./products-cards";
 export const ProductListPage = async () => {
   const queryClient = new QueryClient();
 
-  const categoryId = "beauty";
+  const categorySlug = "beauty";
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: productKey
       .infinite({ limit: PRODUCT_LIST_LIMIT })
-      ._ctx.category("beauty").queryKey,
+      ._ctx.category(categorySlug).queryKey,
     queryFn: ({ pageParam = 0 }) =>
       getProductListByCategory({
-        categoryId,
+        categorySlug,
         limit: PRODUCT_LIST_LIMIT,
         skip: pageParam * PRODUCT_LIST_LIMIT,
       }),
@@ -33,7 +33,7 @@ export const ProductListPage = async () => {
         subcategories={["남성", "여성", "아동", "패션잡화"]}
       />
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductCards categoryId={categoryId} />
+        <ProductCards categoryId={categorySlug} />
       </HydrationBoundary>
     </main>
   );

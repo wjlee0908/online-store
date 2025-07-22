@@ -5,18 +5,18 @@ import {
 } from "../model/get-product-list-response-schema";
 
 export const getProductListByCategory = async ({
-  categoryId,
+  categorySlug,
 
   limit = 20,
   skip = 0,
 }: {
-  categoryId: string;
+  categorySlug: string;
 
   limit?: number;
   skip?: number;
 }): Promise<GetProductListResponse> => {
   const response = await api
-    .get(`products/category/${categoryId}`, {
+    .get(`products/category/${categorySlug}`, {
       searchParams: {
         limit,
         skip,

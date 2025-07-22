@@ -18,11 +18,11 @@ export const productKey = createQueryKeys("products", {
         }),
 
       contextQueries: {
-        category: (categoryId) => ({
-          queryKey: [{ categoryId }],
+        category: (categorySlug) => ({
+          queryKey: [{ categorySlug }],
           queryFn: (context) =>
             getProductListByCategory({
-              categoryId: context.queryKey[1] as string,
+              categorySlug: context.queryKey[1] as string,
               limit,
               skip: (context.pageParam as number) * limit,
             }),
