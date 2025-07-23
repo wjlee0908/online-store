@@ -13,8 +13,8 @@ export const ProductListPage = async (props: PageProps) => {
   const searchParams = await props.searchParams;
 
   const categorySlug =
-    typeof searchParams.categorySlug === "string"
-      ? searchParams.categorySlug
+    typeof searchParams.category === "string"
+      ? searchParams.category
       : DEFAULT_CATEGORY_SLUG;
 
   const queryClient = new QueryClient();
