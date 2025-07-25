@@ -1,8 +1,11 @@
 "use client";
 
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { localStoragePersister, getQueryClient } from "./get-query-client";
+import { getQueryClient } from "./get-query-client";
+import {
+  localStoragePersister,
+  persistOptions,
+} from "./local-storage-persister";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const queryClient = getQueryClient();
@@ -10,7 +13,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <PersistQueryClientProvider
       client={queryClient}
-      persistOptions={{ persister: localStoragePersister }}
+      persistOptions={{ persister: localStoragePersister, ...persistOptions }}
     >
       {children}
     </PersistQueryClientProvider>
