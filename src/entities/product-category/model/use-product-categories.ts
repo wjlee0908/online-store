@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getProductCategoryList } from "../api/get-product-category-list";
 import { productCategoryKey } from "../config/query-key";
 import { toProductCategory } from "../api/mapper";
 
 export const useProductCategories = () => {
-  const { data, ...query } = useQuery({
+  const { data, ...query } = useSuspenseQuery({
     queryKey: productCategoryKey.all.queryKey,
     queryFn: getProductCategoryList,
     staleTime: 1000 * 60 * 60 * 24, // 24 hours

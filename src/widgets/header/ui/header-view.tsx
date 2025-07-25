@@ -6,11 +6,11 @@ import clsx from "clsx";
 import router from "next/router";
 import { useEffect, useRef, useState } from "react";
 
-export interface CategoryHeaderProps {
+export interface HeaderViewProps {
   title: string;
 }
 
-export function CategoryHeader({ title }: CategoryHeaderProps) {
+export function HeaderView({ title }: HeaderViewProps) {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 

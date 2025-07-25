@@ -1,5 +1,5 @@
 import { BottomNavigation } from "@widgets/bottom-navigation";
-import { CategoryHeader } from "./category-header";
+import { CategoryHeader } from "@widgets/header";
 
 export const ProductListLayout = ({
   children,
@@ -8,7 +8,6 @@ export const ProductListLayout = ({
 }) => {
   return (
     <div>
-      <CategoryHeader title="의복" />
       {children}
       <BottomNavigation />
     </div>

@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-query";
 import ProductCards from "./products-cards";
 import { PageProps } from "@shared/framework";
+import { CategoryHeader, CategoryHeaderSkeleton } from "@/widgets/header";
+import { Suspense } from "react";
 
 export const ProductListPage = async (props: PageProps) => {
   const searchParams = await props.searchParams;
@@ -33,14 +35,19 @@ export const ProductListPage = async (props: PageProps) => {
   });
 
   return (
-    <main>
-      <SubcategoryTab
-        className="mb-4"
-        subcategories={["남성", "여성", "아동", "패션잡화"]}
-      />
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductCards categorySlug={categorySlug} />
-      </HydrationBoundary>
-    </main>
+    <>
+      <Suspense fallback={<CategoryHeaderSkeleton />}>
+        <CategoryHeader categorySlug={categorySlug} />
+      </Suspense>
+      <main>
+        <SubcategoryTab
+          className="mb-4"
+          subcategories={["남성", "여성", "아동", "패션잡화"]}
+        />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <ProductCards categorySlug={categorySlug} />
+        </HydrationBoundary>
+      </main>
+    </>
   );
 };
