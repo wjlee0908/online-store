@@ -3,7 +3,7 @@
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export interface HeaderViewProps {
@@ -13,6 +13,8 @@ export interface HeaderViewProps {
 export function HeaderView({ title }: HeaderViewProps) {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
