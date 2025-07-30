@@ -1,5 +1,6 @@
 import { CarouselPagination } from "@/widgets/carousel/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem } from "@widgets/carousel";
+import clsx from "clsx";
 import Image from "next/image";
 
 export interface ImageCarouselProps {
@@ -7,11 +8,12 @@ export interface ImageCarouselProps {
     src: string;
     alt: string;
   }[];
+  className?: string;
 }
 
-export const ImageCarousel = ({ images }: ImageCarouselProps) => {
+export const ImageCarousel = ({ images, className }: ImageCarouselProps) => {
   return (
-    <Carousel className="w-full max-w-xs flex flex-col gap-4">
+    <Carousel className={clsx("w-full flex flex-col gap-4", className)}>
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={index} className="pl-0">
