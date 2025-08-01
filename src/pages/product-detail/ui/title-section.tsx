@@ -20,9 +20,6 @@ export const TitleSection = ({ className }: { className?: string }) => {
         </h1>
         <div className="flex flex-3 text-gray-400 gap-2 justify-end">
           <TitleButton>
-            <HeartIcon className="w-6 h-6" />
-          </TitleButton>
-          <TitleButton>
             <ShareIcon className="w-6 h-6" />
           </TitleButton>
         </div>

@@ -1,4 +1,5 @@
 import { Header } from "@/widgets/header";
+import { Footer } from "./footer";
 
 export const ProductDetailLayout = ({
   children,
@@ -8,7 +9,8 @@ export const ProductDetailLayout = ({
   return (
     <div>
       <Header />
-      <main>{children}</main>
+      <main className="pb-17">{children}</main>
+      <Footer />
     </div>
   );
 };
