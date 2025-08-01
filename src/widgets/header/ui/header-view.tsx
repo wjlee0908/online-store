@@ -4,45 +4,23 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { HEADER_HEIGHT } from "../config";
+import { useScrollHeader } from "../lib/use-scroll-header";
 
 export interface HeaderViewProps {
   title?: string;
 }
 
 export function HeaderView({ title }: HeaderViewProps) {
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
-
   const router = useRouter();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY.current;
-
-      // 스크롤 방향에 따라 헤더 표시/숨김
-      if (isScrollingDown && currentScrollY > 50) {
-        setIsVisible(false); // 아래로 스크롤 시 숨김
-      } else if (!isScrollingDown) {
-        setIsVisible(true); // 위로 스크롤 시 보임
-      }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY.current]);
+  const scrollHeader = useScrollHeader();
 
   return (
     <header
       className={clsx(
-        "flex items-center justify-between w-full h-12 bg-white border-gray-200 border-b-[1px] sticky top-0 z-header transition-transform duration-300 ease-linear",
-        !isVisible && "translate-y-[-100%]"
+        `flex items-center justify-between w-full h-[${HEADER_HEIGHT}px] bg-white border-gray-200 border-b-[1px] sticky top-0 z-header transition-transform duration-300 ease-linear`,
+        !scrollHeader.isVisible && "translate-y-[-100%]"
       )}
     >
       <button

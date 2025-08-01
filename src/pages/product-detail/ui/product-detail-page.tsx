@@ -1,4 +1,7 @@
+import { HEADER_HEIGHT } from "@/widgets/header";
+import { DetailSection } from "./detail-section";
 import { ImageCarousel } from "./image-carousel";
+import { Navigation } from "./navigation";
 import { TitleSection } from "./title-section";
 
 export const ProductDetailPage = () => {
@@ -12,7 +15,10 @@ export const ProductDetailPage = () => {
         }))}
       />
 
-      <TitleSection />
+      <TitleSection className="mb-10" />
+
+      <Navigation className={`mb-15`} />
+      <DetailSection />
     </div>
   );
 };
