@@ -1,11 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
 import { useState } from "react";
 import { ContentWrapper } from "./content-wrapper";
-import { HEADER_HEIGHT, useScrollHeader } from "@/widgets/header";
-import { useInView } from "react-intersection-observer";
 
 export enum NavItem {
   DETAIL,
@@ -37,18 +34,17 @@ export const Navigation = ({ className }: { className?: string }) => {
           "relative flex items-center bg-white border-b border-gray-200"
         }
       >
-        {navItems.map(({ id, href, label }) => (
-          <Link
+        {navItems.map(({ id, label }) => (
+          <button
             className={clsx(
               "flex-1 text-xs h-10 flex justify-center items-center",
               selected === id && " font-semibold"
             )}
-            key={href}
-            href={href}
+            key={label}
             onClick={() => setSelected(id)}
           >
             <p>{label}</p>
-          </Link>
+          </button>
         ))}
         <div
           data-testid="slider"
