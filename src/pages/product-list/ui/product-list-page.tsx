@@ -48,10 +48,6 @@ export const ProductListPage = async (props: PageProps) => {
         <CategoryHeader categorySlug={categorySlug} />
       </Suspense>
       <main>
-        <SubcategoryTab
-          className="mb-4"
-          subcategories={["남성", "여성", "아동", "패션잡화"]}
-        />
         <HydrationBoundary state={dehydrate(queryClient)}>
           <ProductCards categorySlug={categorySlug} />
         </HydrationBoundary>

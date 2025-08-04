@@ -1,5 +1,6 @@
 export { getProductList } from "./api/get-product-list";
 export { getProductListByCategory } from "./api/get-product-list-by-category";
+export { getProduct } from "./api/get-product";
 
 export { ProductSchema, type ProductDTO, type ReviewDTO } from "./api/dto";
 

@@ -1,6 +1,7 @@
 import { getProductList } from "../api/get-product-list";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { getProductListByCategory } from "../api/get-product-list-by-category";
+import { getProduct } from "../api/get-product";
 
 const DEFAULT_LIMIT = 20;
 
@@ -30,4 +31,8 @@ export const productKey = createQueryKeys("products", {
       },
     };
   },
+  detail: (productId: string) => ({
+    queryKey: [productId],
+    queryFn: () => getProduct({ productId }),
+  }),
 });
