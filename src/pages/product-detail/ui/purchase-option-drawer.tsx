@@ -9,6 +9,7 @@ import { DrawerContent } from "@widgets/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
 import clsx from "clsx";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Counter } from "./counter";
 
 const ContentWrapper = ({
   children,
@@ -39,7 +40,7 @@ export const PurchaseOptionDrawer = () => {
       </ContentWrapper>
 
       <ContentWrapper>
-        <div className="w-full p-4 bg-gray-100 flex flex-col gap-3">
+        <div className="w-full p-4 bg-neutral-100 flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <p className="text-xs font-semibold">나일론 바디 타월</p>
             <button>
@@ -49,6 +50,7 @@ export const PurchaseOptionDrawer = () => {
 
           <div className="flex justify-between items-end">
             <p className="text-sm font-semibold">4,900원</p>
+            <Counter />
           </div>
         </div>
       </ContentWrapper>
