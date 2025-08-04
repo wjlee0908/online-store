@@ -5,6 +5,7 @@ import { PRODUCT_LIST_LIMIT } from "../config";
 import { productKey, getProductListByCategory } from "@entities/product";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
+import { useProductsByCategoryInfiniteQuery } from "@/entities/product";
 
 export interface ProductCardsProps {
   categorySlug: string;
@@ -13,27 +14,11 @@ export interface ProductCardsProps {
 export default function ProductCards({ categorySlug }: ProductCardsProps) {
   const observerRef = useRef<HTMLDivElement>(null);
 
-  const productListQuery = useInfiniteQuery({
-    queryKey: productKey
-      .infinite({ limit: PRODUCT_LIST_LIMIT })
-      ._ctx.category(categorySlug).queryKey,
-    queryFn: ({ pageParam = 0 }) =>
-      getProductListByCategory({
-        categorySlug: categorySlug,
-        limit: PRODUCT_LIST_LIMIT,
-        skip: pageParam * PRODUCT_LIST_LIMIT,
-      }),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage.total > pages.length * PRODUCT_LIST_LIMIT
-        ? pages.length + 1
-        : undefined;
-    },
+  const productListQuery = useProductsByCategoryInfiniteQuery({
+    categorySlug,
   });
 
-  const products = productListQuery.data?.pages.flatMap(
-    (page) => page.products
-  );
+  const products = productListQuery.data;
 
   useEffect(() => {
     const observer = new IntersectionObserver(

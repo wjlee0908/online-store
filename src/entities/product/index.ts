@@ -10,5 +10,6 @@ export {
 } from "./api/get-product-list-response";
 
 export { useProductQuery } from "./model/use-product-query";
+export { useProductsByCategoryInfiniteQuery } from "./model/use-products-by-category-infinite-query";
 
 export { productKey } from "./config/query-key";

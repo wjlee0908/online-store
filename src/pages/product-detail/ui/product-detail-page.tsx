@@ -27,7 +27,7 @@ export const ProductDetailPage = async (props: PageProps) => {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ImageCarousel className="mb-10" productId={productId} />
 
-        <TitleSection className="mb-10" />
+        <TitleSection className="mb-10" productId={productId} />
 
         <Navigation className={`mb-15`} />
         <DetailSection />
