@@ -1,5 +1,9 @@
+"use client";
+
 import { cn } from "@shared/lib";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { Drawer, DrawerTrigger } from "@/widgets/drawer";
+import { PurchaseOptionDrawer } from "./purchase-option-drawer";
 
 export const Footer = ({ className }: { className?: string }) => {
   return (
@@ -14,9 +18,14 @@ export const Footer = ({ className }: { className?: string }) => {
       <button className="w-13 h-13 flex items-center justify-center border border-solid border-neutral-200 rounded-sm cursor-pointer">
         <HeartIcon className="w-6 h-6 text-neutral-700" />
       </button>
-      <button className="flex-1 flex items-center justify-center bg-black font-medium text-white rounded-sm cursor-pointer">
-        구매
-      </button>
+      <Drawer>
+        <DrawerTrigger asChild>
+          <button className="flex-1 flex items-center justify-center bg-black font-medium text-white rounded-sm cursor-pointer">
+            구매
+          </button>
+        </DrawerTrigger>
+        <PurchaseOptionDrawer />
+      </Drawer>
     </div>
   );
 };

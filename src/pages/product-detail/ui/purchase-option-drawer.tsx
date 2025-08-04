@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@widgets/select";
-import { DrawerContent } from "@widgets/drawer";
+import { DrawerContent, DrawerTitle } from "@widgets/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
 import {
   ChevronDownIcon,
@@ -67,7 +67,9 @@ const PriceDetail = ({ className }: { className?: string }) => {
 export const PurchaseOptionDrawer = () => {
   return (
     <DrawerContent className="pb-2">
-      <h2 className="text-lg font-semibold px-4 my-5">옵션 선택</h2>
+      <DrawerTitle className="text-lg font-semibold px-4 my-5">
+        옵션 선택
+      </DrawerTitle>
 
       <ContentWrapper className="mb-6">
         <Select>

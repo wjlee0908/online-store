@@ -1,1 +1,1 @@
-export { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
+export { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
