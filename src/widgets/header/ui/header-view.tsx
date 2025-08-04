@@ -2,10 +2,10 @@
 
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { HEADER_HEIGHT } from "../config";
 import { useScrollHeader } from "../lib/use-scroll-header";
+import { cn } from "@shared/lib";
 
 export interface HeaderViewProps {
   title?: string;
@@ -16,7 +16,7 @@ export function HeaderView({ title }: HeaderViewProps) {
 
   return (
     <header
-      className={clsx(
+      className={cn(
         `flex items-center justify-between w-full h-[${HEADER_HEIGHT}px] bg-white border-gray-200 border-b-[1px] sticky top-0 z-header transition-transform duration-300 ease-linear`
       )}
     >

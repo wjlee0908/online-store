@@ -1,8 +1,8 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import "@app/styles/globals.css";
 import React from "react";
-import clsx from "clsx";
 import { pretendard } from "../src/app/styles";
+import { cn } from "../src/shared/lib";
 
 const preview: Preview = {
   parameters: {
@@ -31,7 +31,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div
-        className={clsx(pretendard.className, "antialiased")}
+        className={cn(pretendard.className, "antialiased")}
         style={pretendard.style}
       >
         <Story />

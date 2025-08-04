@@ -1,10 +1,10 @@
+import { cn } from "@shared/lib";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 
 export const Footer = ({ className }: { className?: string }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "w-full bg-white px-3 py-2 flex gap-2",
         "fixed bottom-0 left-0",
         "shadow-[0_0_20px_rgba(0,0,0,0.2)]",

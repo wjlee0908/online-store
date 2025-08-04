@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@shared/lib";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ export function ProductCard({
   return (
     <Link
       href={`/products/${productId}`}
-      className={clsx("flex flex-col gap-2", className)}
+      className={cn("flex flex-col gap-2", className)}
     >
       <div className="relative w-full aspect-square">
         <Image

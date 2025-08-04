@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/shared/lib";
 
 export interface SubcategoryTabProps {
   subcategories: string[];
@@ -10,7 +10,7 @@ export function SubcategoryTab({
   className,
 }: SubcategoryTabProps) {
   return (
-    <div className={clsx("flex gap-2 border-b border-gray-200", className)}>
+    <div className={cn("flex gap-2 border-b border-gray-200", className)}>
       {subcategories.map((subcategory) => (
         <button
           key={subcategory}

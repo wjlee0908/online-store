@@ -1,11 +1,11 @@
 "use client";
 
+import { cn } from "@shared/lib";
 import { HashtagIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import HomeIcon from "@heroicons/react/24/outline/HomeIcon";
 import MagnifyingGlassIcon from "@heroicons/react/24/outline/MagnifyingGlassIcon";
 import UserIcon from "@heroicons/react/24/outline/UserIcon";
-import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -66,7 +66,7 @@ export function BottomNavigation() {
   return (
     <nav
       aria-label="하단 네비게이션"
-      className={clsx(
+      className={cn(
         "h-12 fixed bottom-0 left-0 right-0 bg-white shadow-[0px_0px_16px_0px_rgba(0,0,0,0.12)] transition-transform duration-300 ease-linear",
         !isVisible && "translate-y-[100%]"
       )}

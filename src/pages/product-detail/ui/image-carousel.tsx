@@ -2,9 +2,9 @@
 
 import { CarouselPagination } from "@/widgets/carousel/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem } from "@widgets/carousel";
-import clsx from "clsx";
 import Image from "next/image";
 import { useProductQuery } from "@entities/product";
+import { cn } from "@shared/lib";
 
 export interface ImageCarouselProps {
   className?: string;
@@ -16,7 +16,7 @@ export const ImageCarousel = ({ className, productId }: ImageCarouselProps) => {
   const { product } = useProductQuery({ productId });
 
   return (
-    <Carousel className={clsx("w-full flex flex-col gap-4", className)}>
+    <Carousel className={cn("w-full flex flex-col gap-4", className)}>
       <CarouselContent>
         {product?.images.map((image, index) => (
           <CarouselItem key={index} className="pl-0">

@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/shared/lib";
 
 export const ContentWrapper = ({
   children,
@@ -7,5 +7,5 @@ export const ContentWrapper = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className={clsx("px-4", className)}>{children}</div>;
+  return <div className={cn("px-4", className)}>{children}</div>;
 };

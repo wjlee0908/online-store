@@ -2,9 +2,9 @@
 
 import HeartIcon from "@heroicons/react/24/outline/HeartIcon";
 import ShareIcon from "@heroicons/react/24/outline/ShareIcon";
-import clsx from "clsx";
 import { ContentWrapper } from "./content-wrapper";
 import { useProductQuery } from "@/entities/product";
+import { cn } from "@shared/lib";
 
 export const TitleButton = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -24,7 +24,7 @@ export const TitleSection = ({
   const { product } = useProductQuery({ productId });
 
   return (
-    <ContentWrapper className={clsx("flex flex-col gap-4", className)}>
+    <ContentWrapper className={cn("flex flex-col gap-4", className)}>
       <div className="flex items-center">
         <h1 className="font-bold flex-7">{product.title}</h1>
         <div className="flex flex-3 text-gray-400 gap-2 justify-end">

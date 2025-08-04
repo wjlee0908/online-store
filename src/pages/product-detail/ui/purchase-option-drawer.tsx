@@ -7,9 +7,9 @@ import {
 } from "@widgets/select";
 import { DrawerContent } from "@widgets/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
-import clsx from "clsx";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Counter } from "./counter";
+import { cn } from "@shared/lib";
 
 const ContentWrapper = ({
   children,
@@ -18,7 +18,7 @@ const ContentWrapper = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className={clsx("w-full px-4", className)}>{children}</div>;
+  return <div className={cn("w-full px-4", className)}>{children}</div>;
 };
 
 export const PurchaseOptionDrawer = () => {

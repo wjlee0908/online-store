@@ -1,3 +1,4 @@
+import { cn } from "@/shared/lib";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 export const CounterButton = ({
@@ -17,9 +18,11 @@ export const CounterButton = ({
   );
 };
 
-export const Counter = () => {
+export const Counter = ({ className }: { className?: string }) => {
   return (
-    <div className="flex items-center border border-neutral-200">
+    <div
+      className={cn("flex items-center border border-neutral-200", className)}
+    >
       <CounterButton onClick={() => null}>
         <MinusIcon className="w-3 h-3" />
       </CounterButton>

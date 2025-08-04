@@ -1,8 +1,8 @@
 "use client";
 
-import clsx from "clsx";
 import { useState } from "react";
 import { ContentWrapper } from "./content-wrapper";
+import { cn } from "@shared/lib";
 
 export enum NavItem {
   DETAIL,
@@ -23,7 +23,7 @@ export const Navigation = ({ className }: { className?: string }) => {
 
   return (
     <ContentWrapper
-      className={clsx(
+      className={cn(
         "w-full px-4 bg-white",
         "sticky top-[45px] left-0 transition-transform duration-300 ease-linear",
         className
@@ -36,7 +36,7 @@ export const Navigation = ({ className }: { className?: string }) => {
       >
         {navItems.map(({ id, label }) => (
           <button
-            className={clsx(
+            className={cn(
               "flex-1 text-xs h-10 flex justify-center items-center",
               selected === id && " font-semibold"
             )}
