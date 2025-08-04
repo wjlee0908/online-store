@@ -7,7 +7,7 @@ import {
 } from "@widgets/select";
 import { DrawerContent } from "@widgets/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Counter } from "./counter";
 import { cn } from "@shared/lib";
 
@@ -39,7 +39,7 @@ export const PurchaseOptionDrawer = () => {
         </Select>
       </ContentWrapper>
 
-      <ContentWrapper>
+      <ContentWrapper className="mb-5">
         <div className="w-full p-4 bg-neutral-100 flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <p className="text-xs font-semibold">나일론 바디 타월</p>
@@ -51,6 +51,28 @@ export const PurchaseOptionDrawer = () => {
           <div className="flex justify-between items-end">
             <p className="text-sm font-semibold">4,900원</p>
             <Counter />
+          </div>
+        </div>
+      </ContentWrapper>
+
+      <ContentWrapper className="mb-3">
+        <div className="flex justify-between items-center pb-3 border-b border-neutral-200 mb-3">
+          <p className="text-sm font-semibold">총 합계 금액</p>
+          <div className="flex items-center gap-2">
+            <p className="text-xl font-semibold">4,900원</p>
+            <button className="w-6 h-6 flex items-center justify-center cursor-pointer">
+              <ChevronDownIcon className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 text-neutral-500">
+          <div className="flex justify-between items-center">
+            <p className="text-sm font-semibold">총 할인 금액</p>
+            <p className="text-sm font-medium">0원</p>
+          </div>
+          <div className="flex justify-between items-center">
+            <p className="text-sm font-semibold">최대 혜택가</p>
+            <p className="text-sm font-medium">4,900원</p>
           </div>
         </div>
       </ContentWrapper>

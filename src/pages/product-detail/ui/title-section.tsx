@@ -1,9 +1,8 @@
 "use client";
 
-import HeartIcon from "@heroicons/react/24/outline/HeartIcon";
 import ShareIcon from "@heroicons/react/24/outline/ShareIcon";
 import { ContentWrapper } from "./content-wrapper";
-import { useProductQuery } from "@/entities/product";
+import { useProductQuery } from "@entities/product";
 import { cn } from "@shared/lib";
 
 export const TitleButton = ({ children }: { children: React.ReactNode }) => {
