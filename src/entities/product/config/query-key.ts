@@ -31,7 +31,7 @@ export const productKey = createQueryKeys("products", {
       },
     };
   },
-  detail: (productId: string) => ({
+  detail: (productId: number) => ({
     queryKey: [productId],
     queryFn: () => getProduct({ productId }),
   }),

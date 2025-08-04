@@ -1,25 +1,28 @@
+"use client";
+
 import { CarouselPagination } from "@/widgets/carousel/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem } from "@widgets/carousel";
 import clsx from "clsx";
 import Image from "next/image";
+import { useProductQuery } from "@entities/product";
 
 export interface ImageCarouselProps {
-  images: {
-    src: string;
-    alt: string;
-  }[];
   className?: string;
+
+  productId: number;
 }
 
-export const ImageCarousel = ({ images, className }: ImageCarouselProps) => {
+export const ImageCarousel = ({ className, productId }: ImageCarouselProps) => {
+  const { product } = useProductQuery({ productId });
+
   return (
     <Carousel className={clsx("w-full flex flex-col gap-4", className)}>
       <CarouselContent>
-        {images.map((image, index) => (
+        {product?.images.map((image, index) => (
           <CarouselItem key={index} className="pl-0">
             <Image
-              src={image.src}
-              alt={image.alt}
+              src={image}
+              alt={`${product.title} image ${index}`}
               width={960}
               height={960}
               className="w-full h-full object-cover"

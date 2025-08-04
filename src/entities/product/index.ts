@@ -9,4 +9,6 @@ export {
   type GetProductListResponse,
 } from "./api/get-product-list-response";
 
+export { useProductQuery } from "./model/use-product-query";
+
 export { productKey } from "./config/query-key";
