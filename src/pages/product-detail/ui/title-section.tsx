@@ -2,8 +2,8 @@
 
 import ShareIcon from "@heroicons/react/24/outline/ShareIcon";
 import { ContentWrapper } from "./content-wrapper";
-import { useProductQuery } from "@entities/product";
 import { cn } from "@shared/lib";
+import { useProduct } from "../model/use-product";
 
 export const TitleButton = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -13,14 +13,8 @@ export const TitleButton = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const TitleSection = ({
-  className,
-  productId,
-}: {
-  className?: string;
-  productId: number;
-}) => {
-  const { product } = useProductQuery({ productId });
+export const TitleSection = ({ className }: { className?: string }) => {
+  const { product } = useProduct();
 
   return (
     <ContentWrapper className={cn("flex flex-col gap-4", className)}>

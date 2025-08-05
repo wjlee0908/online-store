@@ -3,17 +3,15 @@
 import { CarouselPagination } from "@/widgets/carousel/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem } from "@widgets/carousel";
 import Image from "next/image";
-import { useProductQuery } from "@entities/product";
 import { cn } from "@shared/lib";
+import { useProduct } from "../model/use-product";
 
 export interface ImageCarouselProps {
   className?: string;
-
-  productId: number;
 }
 
-export const ImageCarousel = ({ className, productId }: ImageCarouselProps) => {
-  const { product } = useProductQuery({ productId });
+export const ImageCarousel = ({ className }: ImageCarouselProps) => {
+  const { product } = useProduct();
 
   return (
     <Carousel className={cn("w-full flex flex-col gap-4", className)}>

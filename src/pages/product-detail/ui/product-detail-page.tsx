@@ -2,6 +2,9 @@ import { DetailSection } from "./detail-section";
 import { ImageCarousel } from "./image-carousel";
 import { Navigation } from "./navigation";
 import { TitleSection } from "./title-section";
+import { Drawer, DrawerTrigger } from "@/widgets/drawer";
+import { PurchaseOptionDrawer } from "./purchase-option-drawer";
+import { Footer } from "./footer";
 import {
   dehydrate,
   HydrationBoundary,
@@ -9,6 +12,7 @@ import {
 } from "@tanstack/react-query";
 import { PageProps } from "@shared/framework";
 import { getProduct, productKey } from "@entities/product";
+import { FooterSection } from "./footer-section";
 
 export const ProductDetailPage = async (props: PageProps) => {
   const params = await props.params;
@@ -25,12 +29,14 @@ export const ProductDetailPage = async (props: PageProps) => {
   return (
     <div>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ImageCarousel className="mb-10" productId={productId} />
+        <ImageCarousel className="mb-10" />
 
-        <TitleSection className="mb-10" productId={productId} />
+        <TitleSection className="mb-10" />
 
         <Navigation className={`mb-15`} />
         <DetailSection />
+
+        <FooterSection />
       </HydrationBoundary>
     </div>
   );

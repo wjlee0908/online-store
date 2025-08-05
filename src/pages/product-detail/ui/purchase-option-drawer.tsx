@@ -13,7 +13,12 @@ import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
 import { SelectedProductCard } from "./selected-product-card";
 import { SelectedProduct, hasSameOptions } from "../model/selected-product";
-import { Collapsible, CollapsibleContent } from "@widgets/collapsible";
+import {
+  Collapsible,
+  COLLAPSIBLE_ANIMATION_DURATION_MS,
+  CollapsibleContent,
+} from "@widgets/collapsible";
+import { useProduct } from "../model/use-product";
 
 const ContentWrapper = ({
   children,
@@ -25,9 +30,9 @@ const ContentWrapper = ({
   return <div className={cn("w-full px-4", className)}>{children}</div>;
 };
 
-const COLLAPSIBLE_ANIMATION_DURATION_MS = 300;
-
 export const PurchaseOptionDrawer = () => {
+  const { product } = useProduct();
+
   const [selectValue, setSelectValue] = useState<string>("");
   const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>(
     []
@@ -47,13 +52,11 @@ export const PurchaseOptionDrawer = () => {
           value: selectedValue,
         },
       ],
-      unitPrice: 4900,
+      unitPrice: product.price,
       quantity: 1,
     };
 
-    if (
-      selectedProducts.some((product) => hasSameOptions(product, newProduct))
-    ) {
+    if (selectedProducts.some((p) => hasSameOptions(p, newProduct))) {
       return;
     }
 
@@ -95,14 +98,14 @@ export const PurchaseOptionDrawer = () => {
           </SelectTrigger>
           <SelectContent className="z-overlay-select">
             <SelectGroup>
-              <SelectItem value="나일론 바디 타월">나일론 바디 타월</SelectItem>
+              <SelectItem value={product.title}>{product.title}</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </ContentWrapper>
 
       <Collapsible open={openProductsCollapsible}>
-        <CollapsibleContent className="duration-300">
+        <CollapsibleContent>
           <ContentWrapper className="mb-5">
             {selectedProducts.map((product) => (
               <SelectedProductCard
@@ -123,7 +126,7 @@ export const PurchaseOptionDrawer = () => {
               className="mb-3"
               totalPrice={totalPrice}
               totalDiscount={0}
-              maxDiscountedPrice={0}
+              maxDiscountedPrice={totalPrice}
             />
           </ContentWrapper>
         </CollapsibleContent>
