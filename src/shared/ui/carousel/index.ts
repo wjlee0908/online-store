@@ -5,4 +5,4 @@ export {
   CarouselPrevious,
   CarouselNext,
   CarouselPagination,
-} from "./ui/carousel";
+} from "./carousel";
