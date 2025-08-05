@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib";
+import { cn } from "@shared/lib/class-name";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 export const CounterButton = ({

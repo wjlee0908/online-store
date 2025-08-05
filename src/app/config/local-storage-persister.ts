@@ -1,5 +1,5 @@
 import { productCategoryKey } from "@entities/product-category";
-import { isArrayEqual } from "@shared/lib";
+import { isArrayEqual } from "@shared/lib/array";
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import { DehydrateOptions, OmitKeyof } from "@tanstack/react-query";
 import { PersistQueryClientOptions } from "@tanstack/react-query-persist-client";

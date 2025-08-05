@@ -2,7 +2,7 @@
 
 import ShareIcon from "@heroicons/react/24/outline/ShareIcon";
 import { ContentWrapper } from "./content-wrapper";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import { useProduct } from "../model/use-product";
 
 export const TitleButton = ({ children }: { children: React.ReactNode }) => {

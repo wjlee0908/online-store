@@ -5,7 +5,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { HEADER_HEIGHT } from "../config";
 import { useScrollHeader } from "../lib/use-scroll-header";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 
 export interface HeaderViewProps {
   title?: string;

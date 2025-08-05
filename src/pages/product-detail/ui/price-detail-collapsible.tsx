@@ -1,10 +1,10 @@
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import ChevronUpIcon from "@heroicons/react/24/outline/ChevronUpIcon";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@widgets/collapsible";
+} from "@/shared/ui/collapsible";
 
 export const PriceDetailCollapsible = ({
   totalPrice,

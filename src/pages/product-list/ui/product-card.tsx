@@ -1,4 +1,4 @@
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import Image from "next/image";
 import Link from "next/link";
 

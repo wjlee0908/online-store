@@ -1,6 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Counter } from "./counter";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 
 export const ProductOrderCard = ({
   title,

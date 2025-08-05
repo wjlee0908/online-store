@@ -6,8 +6,8 @@ import useEmblaCarousel, {
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import { cn } from "@shared/lib";
-import { Button } from "@widgets/carousel/ui/button";
+import { cn } from "@shared/lib/class-name";
+import { Button } from "./button";
 import {
   ComponentProps,
   createContext,

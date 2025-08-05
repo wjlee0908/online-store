@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { DrawerTrigger } from "@/widgets/drawer";
+import { DrawerTrigger } from "@/shared/ui/drawer";
 
 export const Footer = ({ className }: { className?: string }) => {
   return (

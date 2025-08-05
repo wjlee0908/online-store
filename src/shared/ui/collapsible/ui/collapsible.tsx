@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib";
+import { cn } from "@shared/lib/class-name";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 
 /**

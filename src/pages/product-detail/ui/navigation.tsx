@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ContentWrapper } from "./content-wrapper";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 
 export enum NavItem {
   DETAIL,

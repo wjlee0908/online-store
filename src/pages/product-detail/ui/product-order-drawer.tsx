@@ -4,11 +4,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@widgets/select";
-import { DrawerContent, DrawerTitle } from "@widgets/drawer";
+} from "@/shared/ui/select";
+import { DrawerContent, DrawerTitle } from "@/shared/ui/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
-import { cn, delay } from "@shared/lib";
-import { Button } from "@widgets/button";
+import { delay } from "@shared/lib/async";
+import { cn } from "@shared/lib/class-name";
+import { Button } from "@shared/ui/button";
 import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
 import { ProductOrderCard } from "./product-order-card";
@@ -17,7 +18,7 @@ import {
   Collapsible,
   COLLAPSIBLE_ANIMATION_DURATION_MS,
   CollapsibleContent,
-} from "@widgets/collapsible";
+} from "@shared/ui/collapsible";
 import { useProduct } from "../model/use-product";
 import { useCartStore } from "@entities/cart";
 

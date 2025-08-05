@@ -1,5 +1,9 @@
 import { HeaderView } from "./header-view";
 
-export const Header = () => {
-  return <HeaderView />;
+interface HeaderProps {
+  title?: string;
+}
+
+export const Header = ({ title }: HeaderProps) => {
+  return <HeaderView title={title} />;
 };

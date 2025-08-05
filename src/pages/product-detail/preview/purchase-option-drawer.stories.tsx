@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { ProductOrderDrawer } from "../ui/product-order-drawer";
-import { Drawer } from "@widgets/drawer";
+import { Drawer } from "@/shared/ui/drawer";
 
 const meta = {
   component: ProductOrderDrawer,

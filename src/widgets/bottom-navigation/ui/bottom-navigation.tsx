@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import { HashtagIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import HomeIcon from "@heroicons/react/24/outline/HomeIcon";

@@ -1,9 +1,9 @@
 "use client";
 
-import { CarouselPagination } from "@/widgets/carousel/ui/carousel";
-import { Carousel, CarouselContent, CarouselItem } from "@widgets/carousel";
+import { CarouselPagination } from "@shared/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@shared/ui/carousel";
 import Image from "next/image";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/class-name";
 import { useProduct } from "../model/use-product";
 
 export interface ImageCarouselProps {

@@ -1,4 +1,4 @@
-import { Drawer, DrawerContent, DrawerTrigger } from "@widgets/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui/drawer";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export function SortDropdown() {

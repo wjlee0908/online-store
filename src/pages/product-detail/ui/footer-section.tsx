@@ -1,6 +1,6 @@
 "use client";
 
-import { Drawer } from "@widgets/drawer";
+import { Drawer } from "@/shared/ui/drawer";
 import { Footer } from "./footer";
 import { ProductOrderDrawer } from "./product-order-drawer";
 
