@@ -82,7 +82,7 @@ export const PurchaseOptionDrawer = () => {
           <SelectTrigger className="w-full">
             <SelectValue placeholder="선택" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="z-overlay-select">
             <SelectGroup>
               <SelectItem value="나일론 바디 타월">나일론 바디 타월</SelectItem>
             </SelectGroup>

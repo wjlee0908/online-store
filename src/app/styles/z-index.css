@@ -2,6 +2,14 @@
   z-index: 100;
 }
 
+@theme {
+  --z-overlay: 1000;
+}
+
 .z-overlay {
-  z-index: 1000;
+  z-index: var(--z-overlay);
+}
+
+.z-overlay-select {
+  z-index: calc(var(--z-overlay) + 100);
 }
