@@ -11,8 +11,8 @@ import { cn, delay } from "@shared/lib";
 import { Button } from "@widgets/button";
 import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
-import { OrderItemCard } from "./order-item-card";
-import { OrderItem, hasSameOptions } from "../model/order-item";
+import { ProductOrderCard } from "./product-order-card";
+import { ProductOrder, hasSameOptions } from "../model/product-order";
 import {
   Collapsible,
   COLLAPSIBLE_ANIMATION_DURATION_MS,
@@ -34,16 +34,16 @@ export const OrderDrawer = () => {
   const { product } = useProduct();
 
   const [selectValue, setSelectValue] = useState<string>("");
-  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
-  const [openProductsCollapsible, setOpenProductsCollapsible] = useState(false);
+  const [productOrders, setProductOrders] = useState<ProductOrder[]>([]);
+  const [openOrderCollapsible, setOpenOrderCollapsible] = useState(false);
 
-  const totalPrice = orderItems.reduce(
-    (acc, product) => acc + product.unitPrice * product.quantity,
+  const totalPrice = productOrders.reduce(
+    (acc, order) => acc + order.unitPrice * order.quantity,
     0
   );
 
   const handleSelectOption = (selectedValue: string) => {
-    const newItem: OrderItem = {
+    const newOrder: ProductOrder = {
       options: [
         {
           field: "default",
@@ -54,31 +54,33 @@ export const OrderDrawer = () => {
       quantity: 1,
     };
 
-    if (orderItems.some((item) => hasSameOptions(item, newItem))) {
+    if (productOrders.some((order) => hasSameOptions(order, newOrder))) {
       return;
     }
 
-    setOrderItems((prev) => [...prev, newItem]);
+    setProductOrders((prev) => [...prev, newOrder]);
     setSelectValue("");
-    setOpenProductsCollapsible(true);
+    setOpenOrderCollapsible(true);
   };
 
-  const handleDeleteProduct = async (targetItem: OrderItem) => {
-    if (orderItems.length - 1 <= 0) {
-      setOpenProductsCollapsible(false);
+  const handleDeleteOrder = async (targetOrder: ProductOrder) => {
+    if (productOrders.length - 1 <= 0) {
+      setOpenOrderCollapsible(false);
 
       await delay(COLLAPSIBLE_ANIMATION_DURATION_MS);
     }
 
-    setOrderItems((prevItems) =>
-      prevItems.filter((item) => !hasSameOptions(item, targetItem))
+    setProductOrders((prevOrders) =>
+      prevOrders.filter((order) => !hasSameOptions(order, targetOrder))
     );
   };
 
-  const handleChangeCount = (targetItem: OrderItem, count: number) => {
-    setOrderItems((prevItems) =>
-      prevItems.map((item) =>
-        hasSameOptions(item, targetItem) ? { ...item, quantity: count } : item
+  const handleChangeCount = (targetOrder: ProductOrder, count: number) => {
+    setProductOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        hasSameOptions(order, targetOrder)
+          ? { ...order, quantity: count }
+          : order
       )
     );
   };
@@ -102,19 +104,17 @@ export const OrderDrawer = () => {
         </Select>
       </ContentWrapper>
 
-      <Collapsible open={openProductsCollapsible}>
+      <Collapsible open={openOrderCollapsible}>
         <CollapsibleContent>
           <ContentWrapper className="mb-5">
-            {orderItems.map((product) => (
-              <OrderItemCard
-                key={product.options.map((option) => option.value).join("_")}
-                title={product.options
-                  .map((option) => option.value)
-                  .join(" / ")}
-                price={product.unitPrice * product.quantity}
-                count={product.quantity}
-                onChangeCount={(count) => handleChangeCount(product, count)}
-                onClickDelete={async () => await handleDeleteProduct(product)}
+            {productOrders.map((order) => (
+              <ProductOrderCard
+                key={order.options.map((option) => option.value).join("_")}
+                title={order.options.map((option) => option.value).join(" / ")}
+                price={order.unitPrice}
+                count={order.quantity}
+                onChangeCount={(count) => handleChangeCount(order, count)}
+                onClickDelete={async () => await handleDeleteOrder(order)}
               />
             ))}
           </ContentWrapper>
