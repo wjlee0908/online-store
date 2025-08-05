@@ -2,9 +2,6 @@ import { DetailSection } from "./detail-section";
 import { ImageCarousel } from "./image-carousel";
 import { Navigation } from "./navigation";
 import { TitleSection } from "./title-section";
-import { Drawer, DrawerTrigger } from "@/widgets/drawer";
-import { PurchaseOptionDrawer } from "./purchase-option-drawer";
-import { Footer } from "./footer";
 import {
   dehydrate,
   HydrationBoundary,

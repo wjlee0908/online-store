@@ -11,8 +11,8 @@ import { cn, delay } from "@shared/lib";
 import { Button } from "@widgets/button";
 import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
-import { SelectedProductCard } from "./selected-product-card";
-import { SelectedProduct, hasSameOptions } from "../model/selected-product";
+import { OrderItemCard } from "./order-item-card";
+import { OrderItem, hasSameOptions } from "../model/order-item";
 import {
   Collapsible,
   COLLAPSIBLE_ANIMATION_DURATION_MS,
@@ -30,22 +30,20 @@ const ContentWrapper = ({
   return <div className={cn("w-full px-4", className)}>{children}</div>;
 };
 
-export const PurchaseOptionDrawer = () => {
+export const OrderDrawer = () => {
   const { product } = useProduct();
 
   const [selectValue, setSelectValue] = useState<string>("");
-  const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>(
-    []
-  );
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [openProductsCollapsible, setOpenProductsCollapsible] = useState(false);
 
-  const totalPrice = selectedProducts.reduce(
+  const totalPrice = orderItems.reduce(
     (acc, product) => acc + product.unitPrice * product.quantity,
     0
   );
 
   const handleSelectOption = (selectedValue: string) => {
-    const newProduct: SelectedProduct = {
+    const newItem: OrderItem = {
       options: [
         {
           field: "default",
@@ -56,31 +54,31 @@ export const PurchaseOptionDrawer = () => {
       quantity: 1,
     };
 
-    if (selectedProducts.some((p) => hasSameOptions(p, newProduct))) {
+    if (orderItems.some((item) => hasSameOptions(item, newItem))) {
       return;
     }
 
-    setSelectedProducts((prev) => [...prev, newProduct]);
+    setOrderItems((prev) => [...prev, newItem]);
     setSelectValue("");
     setOpenProductsCollapsible(true);
   };
 
-  const handleDeleteProduct = async (product: SelectedProduct) => {
-    if (selectedProducts.length - 1 <= 0) {
+  const handleDeleteProduct = async (targetItem: OrderItem) => {
+    if (orderItems.length - 1 <= 0) {
       setOpenProductsCollapsible(false);
 
       await delay(COLLAPSIBLE_ANIMATION_DURATION_MS);
     }
 
-    setSelectedProducts((prevProducts) =>
-      prevProducts.filter((p) => !hasSameOptions(p, product))
+    setOrderItems((prevItems) =>
+      prevItems.filter((item) => !hasSameOptions(item, targetItem))
     );
   };
 
-  const handleChangeCount = (product: SelectedProduct, count: number) => {
-    setSelectedProducts((prevProducts) =>
-      prevProducts.map((p) =>
-        hasSameOptions(p, product) ? { ...p, quantity: count } : p
+  const handleChangeCount = (targetItem: OrderItem, count: number) => {
+    setOrderItems((prevItems) =>
+      prevItems.map((item) =>
+        hasSameOptions(item, targetItem) ? { ...item, quantity: count } : item
       )
     );
   };
@@ -107,8 +105,8 @@ export const PurchaseOptionDrawer = () => {
       <Collapsible open={openProductsCollapsible}>
         <CollapsibleContent>
           <ContentWrapper className="mb-5">
-            {selectedProducts.map((product) => (
-              <SelectedProductCard
+            {orderItems.map((product) => (
+              <OrderItemCard
                 key={product.options.map((option) => option.value).join("_")}
                 title={product.options
                   .map((option) => option.value)
