@@ -16,6 +16,11 @@ import { Counter } from "./counter";
 import { cn } from "@shared/lib";
 import { Button } from "@widgets/button";
 import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@widgets/collapsible";
 
 const ContentWrapper = ({
   children,
@@ -28,38 +33,39 @@ const ContentWrapper = ({
 };
 
 const PriceDetail = ({ className }: { className?: string }) => {
-  const [openPriceDetail, setOpenPriceDetail] = useState(false);
-
   return (
     <ContentWrapper className={className}>
-      <div className="flex justify-between items-center pb-3 border-b border-neutral-200">
-        <p className="text-sm font-semibold">총 합계 금액</p>
-        <div className="flex items-center gap-2">
-          <p className="text-xl font-semibold">4,900원</p>
-          <button
-            className="w-6 h-6 flex items-center justify-center cursor-pointer"
-            onClick={() => setOpenPriceDetail(!openPriceDetail)}
-          >
-            {openPriceDetail ? (
-              <ChevronUpIcon className="w-4 h-4" />
-            ) : (
-              <ChevronDownIcon className="w-4 h-4" />
-            )}
-          </button>
-        </div>
-      </div>
-      {openPriceDetail && (
-        <div className="flex flex-col gap-4 text-neutral-500 mt-3">
-          <div className="flex justify-between items-center">
-            <p className="text-sm font-semibold">총 할인 금액</p>
-            <p className="text-sm font-medium">0원</p>
-          </div>
-          <div className="flex justify-between items-center">
-            <p className="text-sm font-semibold">최대 혜택가</p>
-            <p className="text-sm font-medium">4,900원</p>
+      <Collapsible>
+        <div className="flex justify-between items-center pb-3 border-b border-neutral-200">
+          <p className="text-sm font-semibold">총 합계 금액</p>
+          <div className="flex items-center gap-2">
+            <p className="text-xl font-semibold">4,900원</p>
+            <CollapsibleTrigger asChild>
+              <button
+                className={cn(
+                  "w-6 h-6 flex items-center justify-center cursor-pointer",
+                  "transition-transform duration-200",
+                  "data-[state=open]:rotate-180"
+                )}
+              >
+                <ChevronUpIcon className="w-4 h-4" />
+              </button>
+            </CollapsibleTrigger>
           </div>
         </div>
-      )}
+        <CollapsibleContent>
+          <div className="flex flex-col gap-4 text-neutral-500 pt-3">
+            <div className="flex justify-between items-center">
+              <p className="text-sm font-semibold">총 할인 금액</p>
+              <p className="text-sm font-medium">0원</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <p className="text-sm font-semibold">최대 혜택가</p>
+              <p className="text-sm font-medium">4,900원</p>
+            </div>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
     </ContentWrapper>
   );
 };
