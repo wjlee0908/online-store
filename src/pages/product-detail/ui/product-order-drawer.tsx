@@ -12,13 +12,14 @@ import { Button } from "@widgets/button";
 import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
 import { ProductOrderCard } from "./product-order-card";
-import { ProductOrder, hasSameOptions } from "../model/product-order";
+import { ProductOrder, hasSameOptions } from "@entities/order";
 import {
   Collapsible,
   COLLAPSIBLE_ANIMATION_DURATION_MS,
   CollapsibleContent,
 } from "@widgets/collapsible";
 import { useProduct } from "../model/use-product";
+import { useCartStore } from "@entities/cart";
 
 const ContentWrapper = ({
   children,
@@ -30,8 +31,9 @@ const ContentWrapper = ({
   return <div className={cn("w-full px-4", className)}>{children}</div>;
 };
 
-export const OrderDrawer = () => {
+export const ProductOrderDrawer = () => {
   const { product } = useProduct();
+  const cartStore = useCartStore();
 
   const [selectValue, setSelectValue] = useState<string>("");
   const [productOrders, setProductOrders] = useState<ProductOrder[]>([]);
@@ -85,6 +87,22 @@ export const OrderDrawer = () => {
     );
   };
 
+  const handleClickAddToCart = () => {
+    cartStore.addItem({
+      product,
+      orders: productOrders,
+    });
+    // TODO: 장바구니 바로가기 모달
+  };
+
+  const handleClickPurchase = () => {
+    cartStore.addItem({
+      product,
+      orders: productOrders,
+    });
+    // TODO: navigate to login
+  };
+
   return (
     <DrawerContent className="pb-2">
       <DrawerTitle className="text-lg font-semibold px-4 my-5">
@@ -131,10 +149,15 @@ export const OrderDrawer = () => {
       </Collapsible>
 
       <ContentWrapper className="flex gap-2 py-3">
-        <Button variant="outline" size="xl" className="flex-1">
+        <Button
+          variant="outline"
+          size="xl"
+          className="flex-1"
+          onClick={handleClickAddToCart}
+        >
           장바구니
         </Button>
-        <Button size="xl" className="flex-1">
+        <Button size="xl" className="flex-1" onClick={handleClickPurchase}>
           바로 구매
         </Button>
       </ContentWrapper>

@@ -1,23 +1,23 @@
 import { Product } from "@entities/product/@x/cart";
+import { ProductOrder } from "@entities/order/@x/cart";
 import { create } from "zustand";
 
 interface CartItem {
   product: Product;
-  quantity: number;
+  orders: ProductOrder[];
 }
 
 interface CartStore {
-  cartItems: CartItem[];
-  addCartItem: (item: CartItem) => void;
-  removeCartItem: (item: CartItem) => void;
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  removeItem: (item: CartItem) => void;
 }
 
 export const useCartStore = create<CartStore>((set) => ({
-  cartItems: [],
-  addCartItem: (item) =>
-    set((state) => ({ cartItems: [...state.cartItems, item] })),
-  removeCartItem: (item) =>
+  items: [],
+  addItem: (item) => set((state) => ({ items: [...state.items, item] })),
+  removeItem: (targetItem) =>
     set((state) => ({
-      cartItems: state.cartItems.filter((i) => i.id !== item.id),
+      items: state.items.filter((i) => i.product.id !== targetItem.product.id),
     })),
 }));

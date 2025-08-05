@@ -2,13 +2,13 @@
 
 import { Drawer } from "@widgets/drawer";
 import { Footer } from "./footer";
-import { OrderDrawer } from "./order-drawer";
+import { ProductOrderDrawer } from "./product-order-drawer";
 
 export const FooterSection = () => {
   return (
     <Drawer>
       <Footer />
-      <OrderDrawer />
+      <ProductOrderDrawer />
     </Drawer>
   );
 };

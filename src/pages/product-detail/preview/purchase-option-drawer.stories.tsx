@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { OrderDrawer } from "../ui/order-drawer";
+import { ProductOrderDrawer } from "../ui/product-order-drawer";
 import { Drawer } from "@widgets/drawer";
 
 const meta = {
-  component: OrderDrawer,
-} satisfies Meta<typeof OrderDrawer>;
+  component: ProductOrderDrawer,
+} satisfies Meta<typeof ProductOrderDrawer>;
 
 export default meta;
 
@@ -13,7 +13,7 @@ export const PurchaseOptionDrawerStory: StoryObj<typeof meta> = {
   render: () => {
     return (
       <Drawer open>
-        <OrderDrawer />
+        <ProductOrderDrawer />
       </Drawer>
     );
   },

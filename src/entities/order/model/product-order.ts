@@ -1,11 +1,14 @@
-interface Option {
-  field: string;
-  value: string;
-  additionalPrice?: number;
-}
+import { ProductOption } from "@/entities/product/model/product-option";
 
+/**
+ * 상품 하나의 주문 정보
+ */
 export interface ProductOrder {
-  options: Option[];
+  /**
+   * 선택한 옵션
+   * - 옵션1=xxx, 옵션2=yyy...
+   */
+  options: ProductOption[];
   /** 개당 가격 */
   unitPrice: number;
   quantity: number;
