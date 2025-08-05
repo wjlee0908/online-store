@@ -8,5 +8,8 @@ const meta = {
 export default meta;
 
 export const CounterStory: StoryObj<typeof meta> = {
-  args: {},
+  args: {
+    value: 0,
+    onChange: () => {},
+  },
 };
