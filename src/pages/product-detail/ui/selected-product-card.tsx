@@ -8,6 +8,7 @@ export const SelectedProductCard = ({
   count,
 
   onChangeCount,
+  onClickDelete,
   className,
 }: {
   title: string;
@@ -15,6 +16,7 @@ export const SelectedProductCard = ({
   count: number;
 
   onChangeCount: (count: number) => void;
+  onClickDelete: () => void;
   className?: string;
 }) => {
   return (
@@ -26,7 +28,7 @@ export const SelectedProductCard = ({
     >
       <div className="flex justify-between items-start">
         <p className="text-xs font-semibold">{title}</p>
-        <button>
+        <button onClick={onClickDelete}>
           <XMarkIcon className="w-4 h-4" />
         </button>
       </div>

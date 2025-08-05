@@ -7,12 +7,13 @@ import {
 } from "@widgets/select";
 import { DrawerContent, DrawerTitle } from "@widgets/drawer";
 import { SelectGroup } from "@radix-ui/react-select";
-import { cn } from "@shared/lib";
+import { cn, delay } from "@shared/lib";
 import { Button } from "@widgets/button";
 import { useState } from "react";
 import { PriceDetailCollapsible } from "./price-detail-collapsible";
 import { SelectedProductCard } from "./selected-product-card";
 import { SelectedProduct, hasSameOptions } from "../model/selected-product";
+import { Collapsible, CollapsibleContent } from "@widgets/collapsible";
 
 const ContentWrapper = ({
   children,
@@ -24,10 +25,18 @@ const ContentWrapper = ({
   return <div className={cn("w-full px-4", className)}>{children}</div>;
 };
 
+const COLLAPSIBLE_ANIMATION_DURATION_MS = 300;
+
 export const PurchaseOptionDrawer = () => {
   const [selectValue, setSelectValue] = useState<string>("");
   const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>(
     []
+  );
+  const [openProductsCollapsible, setOpenProductsCollapsible] = useState(false);
+
+  const totalPrice = selectedProducts.reduce(
+    (acc, product) => acc + product.unitPrice * product.quantity,
+    0
   );
 
   const handleSelectOption = (selectedValue: string) => {
@@ -50,6 +59,19 @@ export const PurchaseOptionDrawer = () => {
 
     setSelectedProducts((prev) => [...prev, newProduct]);
     setSelectValue("");
+    setOpenProductsCollapsible(true);
+  };
+
+  const handleDeleteProduct = async (product: SelectedProduct) => {
+    if (selectedProducts.length - 1 <= 0) {
+      setOpenProductsCollapsible(false);
+
+      await delay(COLLAPSIBLE_ANIMATION_DURATION_MS);
+    }
+
+    setSelectedProducts((prevProducts) =>
+      prevProducts.filter((p) => !hasSameOptions(p, product))
+    );
   };
 
   const handleChangeCount = (product: SelectedProduct, count: number) => {
@@ -79,21 +101,33 @@ export const PurchaseOptionDrawer = () => {
         </Select>
       </ContentWrapper>
 
-      <ContentWrapper className="mb-5">
-        {selectedProducts.map((product) => (
-          <SelectedProductCard
-            key={product.options.map((option) => option.value).join("_")}
-            title={product.options.map((option) => option.value).join(" / ")}
-            price={product.unitPrice * product.quantity}
-            count={product.quantity}
-            onChangeCount={(count) => handleChangeCount(product, count)}
-          />
-        ))}
-      </ContentWrapper>
+      <Collapsible open={openProductsCollapsible}>
+        <CollapsibleContent className="duration-300">
+          <ContentWrapper className="mb-5">
+            {selectedProducts.map((product) => (
+              <SelectedProductCard
+                key={product.options.map((option) => option.value).join("_")}
+                title={product.options
+                  .map((option) => option.value)
+                  .join(" / ")}
+                price={product.unitPrice * product.quantity}
+                count={product.quantity}
+                onChangeCount={(count) => handleChangeCount(product, count)}
+                onClickDelete={async () => await handleDeleteProduct(product)}
+              />
+            ))}
+          </ContentWrapper>
 
-      <ContentWrapper className="mb-3">
-        <PriceDetailCollapsible className="mb-3" />
-      </ContentWrapper>
+          <ContentWrapper className="mb-3">
+            <PriceDetailCollapsible
+              className="mb-3"
+              totalPrice={totalPrice}
+              totalDiscount={0}
+              maxDiscountedPrice={0}
+            />
+          </ContentWrapper>
+        </CollapsibleContent>
+      </Collapsible>
 
       <ContentWrapper className="flex gap-2 py-3">
         <Button variant="outline" size="xl" className="flex-1">
