@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/nextjs-vite";
 import "@app/styles/globals.css";
 import React from "react";
 import { pretendard } from "../src/app/styles";
-import { cn } from "../src/shared/lib";
+import { cn } from "../src/shared/lib/class-name";
 
 const preview: Preview = {
   parameters: {
