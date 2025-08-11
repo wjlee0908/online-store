@@ -3,13 +3,18 @@ import { Input } from "@shared/ui/input";
 import { Button } from "@shared/ui/button";
 import { Tabs, TabsContent } from "@shared/ui/tabs";
 import { LoginTabsList, LoginTabsValue } from "./login-tabs-list";
+import { Checkbox } from "@shared/ui/checkbox";
 
 const LoginLabel = (props: React.ComponentProps<typeof Label>) => {
   return <Label {...props} className="text-sm font-semibold" />;
 };
 
 const Field = ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>;
+  return <div className="flex flex-col gap-1">{children}</div>;
+};
+
+const CheckboxField = ({ children }: { children: React.ReactNode }) => {
+  return <div className="flex items-center gap-2">{children}</div>;
 };
 
 export const LoginPage = () => {
@@ -18,7 +23,7 @@ export const LoginPage = () => {
       <Tabs defaultValue={LoginTabsValue.LOGIN}>
         <LoginTabsList />
         <TabsContent
-          className="pt-6 flex flex-col gap-5"
+          className="pt-6 flex flex-col gap-6"
           value={LoginTabsValue.LOGIN}
         >
           <Field>
@@ -29,7 +34,19 @@ export const LoginPage = () => {
             <LoginLabel htmlFor="password">비밀번호</LoginLabel>
             <Input name="password" type="password" />
           </Field>
-          <Button>로그인</Button>
+          <div className="flex gap-6">
+            <CheckboxField>
+              <Checkbox id="remember-username" />
+              <Label htmlFor="remember-username">아이디 저장</Label>
+            </CheckboxField>
+            <CheckboxField>
+              <Checkbox id="remember-me" />
+              <Label htmlFor="remember-me">로그인 상태 유지</Label>
+            </CheckboxField>
+          </div>
+          <Button className="font-bold" size="xl">
+            로그인
+          </Button>
         </TabsContent>
         <TabsContent className="pt-6" value={LoginTabsValue.GUEST}>
           <LoginLabel htmlFor="order-number">주문 번호</LoginLabel>
